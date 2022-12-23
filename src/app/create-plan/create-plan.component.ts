@@ -16,6 +16,8 @@ export class CreatePlanComponent {
     data: new FormControl(),
     validity: new FormControl()
   });
+  Hemle !:any;
+  Mango !:any;
   constructor(private userplan : UserplanService) {
   }
   choiseplan(){
@@ -48,10 +50,13 @@ export class CreatePlanComponent {
         this.plans.reset();
       }
     }
-    this.userplan.showPlan(result).subscribe(
+    this.userplan.showPlan(JSON.stringify(result)).subscribe(
       (response: any) => {
-        console.log(response) }
+          this.Hemle=response.Hemle;
+          this.Mango=response.Mango;
+        console.log(this.Hemle)
+        console.log(this.Mango)
+      }
     );
-
   }
 }
