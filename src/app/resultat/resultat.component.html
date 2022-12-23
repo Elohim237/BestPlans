@@ -46,13 +46,15 @@
           </tr>
           </thead>
           <tbody class="table-border-bottom-0">
-          <tr>
-            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Hemle Illimite</strong></td>
-            <td>7 jours </td>
-            <td>100</td>
-            <td>100</td>
-            <td>100</td>
+          <tr *ngFor="let fhemle of Fhemle">
+            <div *ngFor="let result of fhemle">
+            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Hemle</strong></td>
+            <td>{{result.validity}}jours </td>
+            <td>{{result.sms}}</td>
+            <td>{{fhemle.call}}</td>
+            <td>{{fhemle.data}}</td>
             <td><span class="badge bg-label-success me-1">1000 Fcfa</span></td>
+            </div>
           </tr>
           </tbody>
         </table>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {HttpClient} from "@angular/common/http";
 import {UserplanService} from "../services/userplan.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-plan',
@@ -18,7 +19,8 @@ export class CreatePlanComponent {
   });
   Hemle !:any;
   Mango !:any;
-  constructor(private userplan : UserplanService) {
+  All!:any;
+  constructor(private userplan : UserplanService,private router:Router) {
   }
   choiseplan(){
       let result={amount:this.plans.value.amount,sms:parseInt(<string>this.plans.value.sms) ,call:parseInt(<string>this.plans.value.appel),data:parseInt(<string>this.plans.value.data),validity:parseInt(<string>this.plans.value.validity)}
@@ -50,13 +52,20 @@ export class CreatePlanComponent {
         this.plans.reset();
       }
     }
-    this.userplan.showPlan(JSON.stringify(result)).subscribe(
-      (response: any) => {
+    else{
+      this.userplan.showPlan(JSON.stringify(result)).subscribe(
+        (response: any) => {
           this.Hemle=response.Hemle;
           this.Mango=response.Mango;
-        console.log(this.Hemle)
-        console.log(this.Mango)
-      }
-    );
+          this.All=response;
+          this.userplan.allforfait(this.All);
+          console.log(this.All);
+          this.userplan.setHemle(this.Hemle);
+          this.userplan.SetMango(this.Mango);
+        }
+      );
+      this.router.navigate(['/resultat'])
+    }
+
   }
 }
