@@ -1,0 +1,79 @@
+<div class="container-xxl">
+  <div class="authentication-wrapper authentication-basic container-p-y">
+    <div class="authentication-inner">
+      <!-- Register -->
+      <div class="card xxl">
+        <div class="card-body">
+          <!-- Content info -->
+          <h2 class="mb-2 text-center">Best-Plan </h2>
+          <p class="mb-4 text-center">Salut, entre les informations pour avoir le fordait Ideal 😉 </p>
+
+          <form  [formGroup]="plans" (ngSubmit)="choiseplan()" id="formAuthentication" class="mb-3" action="index.html" method="POST">
+            <div class="d-custom">
+              <div class="f-custom mb-3">
+                <label for="email" class="form-label">Montant</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  #email
+                  placeholder="Enter your amount"
+                  autofocus
+                  formControlName="amount"
+                />
+              </div>
+              <div class="mb-3 ">
+                <div class="d-flex justify-content-between">
+                  <label class="form-label" for="duree">Durée du forfait en jours </label>
+                </div>
+                <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example"  formControlName="numberjour">
+                  <option selected>Selectionner le nombre jours</option>
+                  <option value=1 >1</option>
+                  <option value=7>7</option>
+                  <option value=31>31</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="priorite1" class="form-label">Priorité sur les SMS</label>
+              <select class="form-select" id="priorite1" aria-label="Default select example" formControlName="sms">
+                <option selected>Selectionner la priorité</option>
+                <option value=0>0</option>
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="priorite2" class="form-label">Priorité sur les Appels</label>
+              <select class="form-select" id="priorite2" aria-label="Default select example" formControlName="appel">
+                <option selected>Selectionner la priorité</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="priorite3" class="form-label">Priorité sur les Megas</label>
+              <select class="form-select" id="priorite3" aria-label="Default select example" formControlName="data">
+                <option selected>Selectionner la priorité</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <button class="btn btn-log d-grid w-100" type="submit" >Valider</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- / Content -->
+
