@@ -21,41 +21,37 @@ export class CreatePlanComponent {
   choiseplan(){
       let result={amount:this.plans.value.amount,sms:parseInt(<string>this.plans.value.sms) ,call:parseInt(<string>this.plans.value.appel),data:parseInt(<string>this.plans.value.data),validity:parseInt(<string>this.plans.value.validity)}
       console.log(result);
+
+    if (result.sms==1 && result.call==1 && result.data==1){
+       alert("on entre 1 priorite au plus deux fois")
+      this.plans.reset();
+     }
+    if (result.sms==0 && result.call==0 && result.data==0){
+      alert("on entre pas tout zero")
+      this.plans.reset();
+    }
+    if(result.sms==1){
+      if((result.call==1 && result.data==0) || (result.call==0 && result.data==1)){
+        alert("on entre 1 au plus une fois ")
+        this.plans.reset();
+      }
+    }
+    if(result.call==1){
+      if((result.sms==1 && result.data==0) || (result.sms==0 && result.data==1)){
+        alert("on entre 1 au plus une fois ")
+        this.plans.reset();
+      }
+    }
+    if(result.data==1){
+      if((result.sms==1 && result.call==0) || (result.sms==0 && result.call==1)){
+        alert("on entre 1 au plus une fois ")
+        this.plans.reset();
+      }
+    }
     this.userplan.showPlan(result).subscribe(
       (response: any) => {
         console.log(response) }
     );
-
-    // if (result.sms==1 && result.call==1 && result.data==1){
-    //   alert("on entre 1 priorite au plus une fois")
-    // }
-    // if(result.sms==1 && ((result.call ==1 && result.data !=1)||(result.call !=1 && result.data ==1))){
-    //   alert("on entre 1 priorite au plus une fois")
-    // }
-    // if(result.data==1 && (result.call ==1 && result.sms !=1) || (result.call !=1 && result.data ==1)){
-    //   alert("on entre 1 priorite au plus une fois")
-    // }
-    // if(result.call==1 && (result.sms ==1 && result.data !=1) || (result.sms !=1 && result.data ==1)){
-    //   alert("on entre 1 priorite au plus une fois")
-    // }
-    // if (result.sms==0 && result.call==0 && result.data===0){
-    //   alert("Erreur revoie tes priorités")
-    // }
-    // if(result.sms==2 || result.sms==3) {
-    //   if (result.data != 1 && result.call != 1) {
-    //     alert("Entre 1 au moins une fois d'ans une priorité")
-    //   }
-    // }
-    // if(result.data==2 || result.data==3) {
-    //   if (result.sms != 1 && result.call != 1) {
-    //     alert("Entre 1 au moins une fois d'ans une priorité")
-    //   }
-    // }
-    // if(result.call==2 || result.call==3) {
-    //   if (result.sms != 1 && result.data != 1) {
-    //     alert("Entre 1 au moins une fois d'ans une priorité")
-    //   }
-    // }
 
   }
 }
