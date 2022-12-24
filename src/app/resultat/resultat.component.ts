@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UserplanService} from "../services/userplan.service";
+import { BundleItems, UserplanService} from "../services/userplan.service";
 
 @Component({
   selector: 'app-resultat',
@@ -10,15 +10,14 @@ export class ResultatComponent implements OnInit{
 
   constructor(private userplan: UserplanService) {
   }
-  Fhemle:any;
+  hemles!: Map<string, BundleItems>;
+  mangos!: Map<string, BundleItems>;
   test:any;
   ngOnInit(){
-    this.Fhemle=this.userplan.getAll();
-    //console.log(this.Fhemle)
-
-   // console.log(this.Fhemle[0]);
-   // console.log(this.userplan.getHemle());
-    //console.log(this.userplan.getMango());
+    this.hemles = this.userplan.getHemle();
+    this.mangos = this.userplan.getMango();
+    console.log('Hemles ', this.hemles);
+    console.log('Mangos  ', this.mangos);
   }
 
 }

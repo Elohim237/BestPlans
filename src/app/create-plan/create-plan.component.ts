@@ -22,49 +22,47 @@ export class CreatePlanComponent {
   All!:any;
   constructor(private userplan : UserplanService,private router:Router) {
   }
+  // @ts-ignore
   choiseplan(){
       let result={amount:this.plans.value.amount,sms:parseInt(<string>this.plans.value.sms) ,call:parseInt(<string>this.plans.value.appel),data:parseInt(<string>this.plans.value.data),validity:parseInt(<string>this.plans.value.validity)}
       console.log(result);
 
-    if (result.sms==1 && result.call==1 && result.data==1){
-       alert("on entre 1 priorite au plus deux fois")
+   if (result.sms==1 && result.call==1 && result.data==1){
+       alert("Aucun forfait correspondant")
       this.plans.reset();
      }
-    if (result.sms==0 && result.call==0 && result.data==0){
-      alert("on entre pas tout zero")
+    else if (result.sms==0 && result.call==0 && result.data==0){
+     alert("Aucun forfait correspondant")
       this.plans.reset();
     }
-    if(result.sms==1){
+    else if(result.sms==1){
       if((result.call==1 && result.data==0) || (result.call==0 && result.data==1)){
-        alert("on entre 1 au plus une fois ")
+        alert("Aucun forfait correspondant")
         this.plans.reset();
       }
     }
-    if(result.call==1){
+    else if(result.call==1){
       if((result.sms==1 && result.data==0) || (result.sms==0 && result.data==1)){
-        alert("on entre 1 au plus une fois ")
+        alert("Aucun forfait correspondant")
         this.plans.reset();
       }
     }
-    if(result.data==1){
+    else if(result.data==1){
       if((result.sms==1 && result.call==0) || (result.sms==0 && result.call==1)){
-        alert("on entre 1 au plus une fois ")
+        alert("Aucun forfait correspondant")
         this.plans.reset();
       }
     }
     else{
-      this.userplan.showPlan(JSON.stringify(result)).subscribe(
+      this.userplan.showPlan(result).subscribe(
         (response: any) => {
-          this.Hemle=response.Hemle;
-          this.Mango=response.Mango;
-          this.All=response;
-          this.userplan.allforfait(this.All);
-          console.log(this.All);
-          this.userplan.setHemle(this.Hemle);
-          this.userplan.SetMango(this.Mango);
+          this.Hemle = this.userplan.setHemle(response.Hemle);
+          this.Mango = this.userplan.SetMango(response.Mango);
+          console.log(this.Hemle);
+          console.log(this.Mango);
+          this.router.navigate(['/resultat'])
         }
       );
-      this.router.navigate(['/resultat'])
     }
 
   }
