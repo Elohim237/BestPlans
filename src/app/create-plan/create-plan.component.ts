@@ -35,24 +35,18 @@ export class CreatePlanComponent {
      alert("Aucun forfait correspondant")
       this.plans.reset();
     }
-    else if(result.sms==1){
-      if((result.call==1 && result.data==0) || (result.call==0 && result.data==1)){
+    else if((result.sms==1 && result.call==1 && result.data==0) || (result.sms==1 && result.call==0 && result.data==1)){
+     alert("Aucun forfait correspondant")
+     this.plans.reset();
+   }
+    else if((result.call==1 && result.sms==1 && result.data==0) || (result.call==1 && result.sms==0 && result.data==1)){
         alert("Aucun forfait correspondant")
         this.plans.reset();
       }
-    }
-    else if(result.call==1){
-      if((result.sms==1 && result.data==0) || (result.sms==0 && result.data==1)){
+    else if((result.data==1 && result.sms==1 && result.call==0) || (result.data==1 && result.sms==0 && result.call==1)){
         alert("Aucun forfait correspondant")
         this.plans.reset();
       }
-    }
-    else if(result.data==1){
-      if((result.sms==1 && result.call==0) || (result.sms==0 && result.call==1)){
-        alert("Aucun forfait correspondant")
-        this.plans.reset();
-      }
-    }
     else{
       this.userplan.showPlan(result).subscribe(
         (response: any) => {
