@@ -21,7 +21,7 @@ export class UserplanService {
   public showPlan(plan:any): Observable<any>
   {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url='http://127.0.0.1:8000/api/choices/';
+    const url='https://batfkc.pythonanywhere.com';
     return this.http.post<Map<string, BundleItems>>(url,plan,{headers});
   }
   public setHemle(obj:Map<string, BundleItems>){
